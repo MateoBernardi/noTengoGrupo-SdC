@@ -44,12 +44,12 @@ Al procesar el archivo `gmon.out`, se obtuvo el siguiente reporte de tiempos. El
 
 Para una interpretación más clara, se generó un grafo de llamadas utilizando `gprof2dot`:
 
-![Grafo de Llamadas](tp1_rendimiento/time_profiling/grafico.png)
+![Grafo de Llamadas](time_profiling/grafico.png)
 
 ##  Análisis con Perf (Muestreo Estadístico)
 Se ejecutó el comando `sudo perf record ./test_gprof` seguido de `sudo perf report` para validar los datos sin instrumentación:
 
-![Reporte Perf](tp1_rendimiento/time_profiling/captura_perf.png)
+![Reporte Perf](time_profiling/captura_perf.png)
 
 ## Conclusiones Finales
 Al examinar los datos obtenidos, se observa que el programa requiere un tiempo total de 30.56 segundos para completar su ejecución, concentrando el 99.9% de la carga de CPU en tres funciones: new_func1, func2 y func1. Individualmente, new_func1 representa el mayor "cuello de botella" con un 38.25% del tiempo de procesamiento. 
