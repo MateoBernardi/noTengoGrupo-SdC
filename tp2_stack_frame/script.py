@@ -1,6 +1,5 @@
 import requests
 import ctypes
-import subprocess
 
 lib = ctypes.CDLL('./converter.so')
 
@@ -34,7 +33,6 @@ if response.status_code == 200:
             gini_modificado = lib.process_gini(gini_original)
             print(f"Año: {entry['date']}, Gini Original: {gini_original}, Gini Modificado: {gini_modificado}")
             notification = f"Año: {entry['date']}, Gini Original: {gini_original}, Gini Modificado: {gini_modificado}"
-            subprocess.run(["curl", "-d", str(notification), "ntfy.sh/SegFault"])
     else:
         print("No hay datos")
 else:
