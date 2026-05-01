@@ -1,10 +1,2 @@
-Archivos para la clase páctica sobre modo protegido.
-Para mas informacion revisar la presentación doc/Modo real vs modo protegido.pdf
-
-TLDR
-
-git clone (url of this repo)
-
-git submodule init 
-
-git submodule update 
+## Informe del Trabajo Práctico
+[Informe TP3 - Modo Protegido](./tp3_modo_protegido/tp3%20-%20SdC-1.pdf)
