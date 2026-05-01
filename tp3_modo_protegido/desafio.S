@@ -2,20 +2,18 @@
 .global _start
 
 _start:
-    cli                         # Desactivar interrupciones
-    lgdt gdt_descriptor         # Cargar la GDT
+    cli                         # Desactivamos interrupciones
+    lgdt gdt_descriptor        
 
-    # Pasar a Modo Protegido (setear bit PE en CR0)
+    # con esto pasamos a modo protegido
     mov %cr0, %eax
     or $1, %eax
     mov %eax, %cr0
-
-    # Salto largo (Far Jump) para cargar CS con el selector de código (0x08)
     ljmp $0x08, $protected_mode
 
 .code32
 protected_mode:
-    # 5. Cargar registros de segmento de datos con el selector 0x10
+    # Con esto cargamos los registros de segmento de datos con el selector 0x10
     mov $0x10, %ax
     mov %ax, %ds
     mov %ax, %es
@@ -23,8 +21,7 @@ protected_mode:
     mov %ax, %gs
     mov %ax, %ss
 
-    # INTENTO DE ESCRITURA EN SEGMENTO DE SOLO LECTURA
-    # Esto provocará un General Protection Fault (#GP)
+    # intentamos escriturar en segmeto de solo lectura, provoca un GP
     movl $0xDEADBEEF, (0x0)
 
 hang:
@@ -33,7 +30,7 @@ hang:
 # --- Estructura de la GDT ---
 .align 4
 gdt_start:
-    .quad 0x0000000000000000    # Descriptor Nulo (obligatorio)
+    .quad 0x0000000000000000    # Descriptor Nulo 
 
     # Selector 0x08: Código (Base 0, Límite 4GB, Ejec/Lect, Granularidad 4KB)
     # Access byte: 0x9A (10011010b)
